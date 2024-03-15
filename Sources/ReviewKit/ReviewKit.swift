@@ -39,7 +39,7 @@ public enum ReviewKit {
       let firstPositiveEventDate = self.positiveEvents.first?.date ?? .distantFuture
       let requiredDateToRequestReview = Calendar.current.date(byAdding: criteria.minimumTimeBeforeRequest, to: firstPositiveEventDate)
 
-      if totalPositiveEventsWeight >= self.criteria.minPositiveEventsWeight, let requiredDateToRequestReview, requiredDateToRequestReview > Date() {
+      if totalPositiveEventsWeight >= self.criteria.minPositiveEventsWeight, let requiredDateToRequestReview, requiredDateToRequestReview < Date() {
          if reviewDelay > 0.0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + reviewDelay) { presentReview() }
          } else {
